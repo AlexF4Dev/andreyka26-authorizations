@@ -1,0 +1,44 @@
+{
+	"folders": [
+	  {
+		"path": "SimpleAuth/Digest.Custom.WebClient"
+	  },
+	  {
+		"path": "OAuthAndOpenIdConnect/OpenIdConnect.IdentityServer.AuthorizationServer"
+	  },
+	  {
+		"path": "SimpleAuth/Basic.Custom.Server"
+	  },
+	  {
+		"path": "SimpleAuth/Digest.Custom.Server"
+	  },
+	  {
+		"path": "SimpleAuth/Basic.Custom.WebClient"
+	  },
+	  {
+		"path": "OAuthAndOpenIdConnect/Oidc.OpenIddict.AuthorizationServer"
+	  },
+	  {
+		"path": "OAuthAndOpenIdConnect/Oidc.OpenIddict.ResourceServer1"
+	  },
+	  {
+		"path": "Custom/JwtAuth.Custom.BackendOnly.Server"
+	  },
+	  {
+		"path": "SimpleAuth/Cookie.RazorPages"
+	  },
+	  {
+		"path": "SimpleAuth/Cookie.BackendOnly"
+	  },
+	  {
+		"path": "Custom/OAuth.Custom.Github.WebClient"
+	  },
+	  {
+		"path": "OAuthAndOpenIdConnect/OAuth.OpenIddict.AuthorizationServer"
+	  },
+	  {
+		"path": "OAuthAndOpenIdConnect/OAuth.OpenIddict.ResourceServer"
+	  }
+	],
+	"settings": {}
+  }
