@@ -53,16 +53,16 @@ namespace Oidc.OpenIddict.AuthorizationServer
             await manager.CreateAsync(new OpenIddictApplicationDescriptor
             {
                 ClientId = "oidc-debugger",
-                ClientSecret = "901564A5-E7FE-42CB-B10D-61EF6A8F3654",
+                // ClientSecret = "901564A5-E7FE-42CB-B10D-61EF6A8F3654",
                 ConsentType = ConsentTypes.Explicit,
                 DisplayName = "Postman client application",
                 RedirectUris =
                 {
-                    new Uri("https://oidcdebugger.com/debug")
+                    new Uri("https://oidcdebugger.com/debug"), new Uri("https://localhost:7000/app/index.html")
                 },
                 PostLogoutRedirectUris =
                 {
-                    new Uri("https://oauth.pstmn.io/v1/callback")
+                    new Uri("https://oauth.pstmn.io/v1/callback"), new Uri("https://localhost:7000/app/index.html")
                 },
                 Permissions =
                 {
@@ -91,7 +91,7 @@ namespace Oidc.OpenIddict.AuthorizationServer
             await context.Database.EnsureCreatedAsync();
 
             var manager = scope.ServiceProvider.GetRequiredService<IOpenIddictApplicationManager>();
-            
+
             var reactClient = await manager.FindByClientIdAsync("react-client");
             if (reactClient != null)
             {
@@ -130,7 +130,7 @@ namespace Oidc.OpenIddict.AuthorizationServer
                 //}
             });
         }
-            
+
         public async Task AddWebClient()
         {
             await using var scope = _serviceProvider.CreateAsyncScope();

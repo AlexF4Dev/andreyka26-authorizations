@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Oidc.OpenIddict.AuthorizationServer;
 using static OpenIddict.Abstractions.OpenIddictConstants;
@@ -9,8 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
-    options.UseOpenIddict();
+                options.UseInMemoryDatabase(nameof(ApplicationDbContext));
+                options.UseOpenIddict();
+    
 });
 
 builder.Services.AddOpenIddict()
@@ -99,5 +101,24 @@ app.UseAuthorization();
 
 app.MapControllers();
 app.MapRazorPages();
+
+    app.Map(new PathString("/app"), client =>
+       {
+           var clientPath = Path.Combine(Directory.GetCurrentDirectory(), "./wwwroot");
+           StaticFileOptions clientAppDist = new StaticFileOptions()
+           {
+               FileProvider = new PhysicalFileProvider(clientPath)
+           };
+
+
+           client.UseSpaStaticFiles(clientAppDist);
+
+           client.UseSpa(spa =>
+           {
+               spa.Options.DefaultPageStaticFileOptions = clientAppDist;
+           });
+       });
+
+
 
 app.Run();
